@@ -6,6 +6,7 @@ import requests
 from flask import Flask, redirect, url_for, session, render_template, request
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
+from urllib.parse import urlencode
 
 app = Flask(__name__)
 app.secret_key = 'dia_secret_key_123'
