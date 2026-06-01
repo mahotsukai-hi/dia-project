@@ -1,0 +1,9 @@
+secrets.json
+credentials.json
+config.json
+token.json
+desktop_app.py
+gmail_agent.py
+.env
+__pycache__/
+*.pyc

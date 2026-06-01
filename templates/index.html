@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DIA — Zomato Excel Extractor</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; color: #1e293b; }
+        h1   { font-size: 22px; margin-bottom: 4px; }
+        p    { color: #64748b; font-size: 14px; margin-bottom: 28px; }
+        .btn {
+            padding: 10px 24px; border-radius: 6px; font-size: 14px;
+            cursor: pointer; text-decoration: none; display: inline-block;
+            margin-right: 10px; margin-bottom: 20px; border: none;
+        }
+        .btn-green  { background: #1D9E75; color: white; }
+        .btn-blue   { background: #1a4f7a; color: white; }
+        .btn-red    { background: #e24b4a; color: white; }
+        .btn:hover  { opacity: 0.85; }
+        .account-box {
+            background: #f0fdf4; border: 1px solid #bbf7d0;
+            border-radius: 8px; padding: 16px 20px;
+            margin-bottom: 24px; font-size: 14px;
+            display: flex; align-items: center;
+            justify-content: space-between;
+        }
+        .account-email { font-weight: bold; color: #166534; }
+        .file-list { list-style: none; padding: 0; }
+        .file-list li {
+            padding: 12px 16px; margin-bottom: 8px;
+            border: 1px solid #e2e8f0; border-radius: 8px;
+            font-size: 14px; font-family: monospace;
+        }
+        .file-list li::before { content: "📄  "; }
+        .empty { color: #94a3b8; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h1>DIA — Zomato Excel Extractor</h1>
+    <p>Authenticate your Gmail account, then fetch Zomato Excel attachments to S3</p>
+
+    {% if email %}
+        <!-- Logged in state -->
+        <div class="account-box">
+            <div>
+                ✓ Connected as &nbsp;
+                <span class="account-email">{{ email }}</span>
+            </div>
+            <a href="/logout" class="btn btn-red">Disconnect</a>
+        </div>
+
+        <a href="/fetch" class="btn btn-green">Fetch Zomato Excels</a>
+
+        {% if files %}
+            <p>{{ files|length }} file(s) uploaded to S3:</p>
+            <ul class="file-list">
+                {% for f in files %}
+                    <li>{{ f }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty">No Zomato Excel files found yet in this inbox.</p>
+        {% endif %}
+
+    {% else %}
+        <!-- Logged out state -->
+        <a href="/login" class="btn btn-blue">Connect Gmail Account</a>
+        <p class="empty">No account connected yet.</p>
+    {% endif %}
+
+</body>
+</html>
