@@ -50,16 +50,16 @@ def index():
 
 @app.route('/login')
 def login():
-    scope_str = '%20'.join(SCOPES)
-    auth_url  = (
-        'https://accounts.google.com/o/oauth2/v2/auth'
-        f'?client_id={CLIENT_ID}'
-        f'&redirect_uri={REDIRECT_URI}'
-        f'&response_type=code'
-        f'&scope={scope_str}'
-        f'&access_type=offline'
-        f'&prompt=consent'
-    )
+    scope_str = ' '.join(SCOPES)
+    params = {
+        'client_id':     CLIENT_ID,
+        'redirect_uri':  REDIRECT_URI,
+        'response_type': 'code',
+        'scope':         scope_str,
+        'access_type':   'offline',
+        'prompt':        'consent'
+    }
+    auth_url = 'https://accounts.google.com/o/oauth2/v2/auth?' + urlencode(params)
     return redirect(auth_url)
 
 @app.route('/callback')
@@ -106,7 +106,7 @@ def fetch():
 
     results  = gmail.users().messages().list(
         userId='me',
-        q='subject:Zomato has:attachment'
+        q='Zomato has:attachment'
     ).execute()
 
     for msg in results.get('messages', []):
