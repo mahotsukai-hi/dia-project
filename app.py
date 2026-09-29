@@ -19,7 +19,7 @@ CLIENT_ID     = os.environ.get('GCP_CLIENT_ID')
 CLIENT_SECRET = os.environ.get('GCP_CLIENT_SECRET')
 AWS_KEY       = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET    = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_REGION    = os.environ.get('AWS_REGION', 'ap-south-1')
+AWS_REGION    = os.environ.get('AWS_REGION')
 S3_BUCKET     = os.environ.get('S3_BUCKET', 'dia-excel-files')
 
 # ── If running locally, load from secrets.json ───────────────
