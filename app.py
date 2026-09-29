@@ -30,7 +30,7 @@ if not CLIENT_ID:
         CLIENT_SECRET= secrets['GCP_CLIENT_SECRET']
         AWS_KEY      = secrets['AWS_ACCESS_KEY_ID']
         AWS_SECRET   = secrets['AWS_SECRET_ACCESS_KEY']
-        AWS_REGION   = secrets.get('AWS_REGION', 'ap-south-1')
+        AWS_REGION   = secrets.get('AWS_REGION')
         S3_BUCKET    = secrets.get('S3_BUCKET', 'dia-excel-files')
 
 REDIRECT_URI = os.environ.get(
